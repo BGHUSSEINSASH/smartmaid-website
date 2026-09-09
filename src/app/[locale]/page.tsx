@@ -2,6 +2,7 @@ import Navbar from "../../components/layout/Navbar";
 import Footer from "../../components/layout/Footer";
 import HeroSection from "../../components/sections/HeroSection";
 import FeaturesSection from "../../components/sections/FeaturesSection";
+import VoiceSearchSection from "../../components/sections/VoiceSearchSection";
 import HowItWorksSection from "../../components/sections/HowItWorksSection";
 import RolesSection from "../../components/sections/RolesSection";
 import ControlSection from "../../components/sections/ControlSection";
@@ -15,7 +16,6 @@ export default function HomePage() {
     <>
       <Navbar />
       <HeroSection />
-
       {/* Payment partners strip */}
       <div style={{ borderBottom:"1px solid var(--border)", borderTop:"1px solid var(--border)", padding:"1.25rem 0", overflow:"hidden", background:"var(--bg)" }}>
         <div className="mx" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:"2.5rem", flexWrap:"wrap" }}>
@@ -24,8 +24,8 @@ export default function HomePage() {
           ))}
         </div>
       </div>
-
       <FeaturesSection />
+      <VoiceSearchSection />
       <HowItWorksSection />
       <RolesSection />
       <ControlSection />
