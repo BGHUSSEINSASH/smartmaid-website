@@ -5,6 +5,7 @@ import FeaturesSection from "../../components/sections/FeaturesSection";
 import VoiceSearchSection from "../../components/sections/VoiceSearchSection";
 import HowItWorksSection from "../../components/sections/HowItWorksSection";
 import RolesSection from "../../components/sections/RolesSection";
+import AdminControlSection from "../../components/sections/AdminControlSection";
 import ControlSection from "../../components/sections/ControlSection";
 import SecuritySection from "../../components/sections/SecuritySection";
 import TestimonialsSection from "../../components/sections/TestimonialsSection";
@@ -28,6 +29,7 @@ export default function HomePage() {
       <VoiceSearchSection />
       <HowItWorksSection />
       <RolesSection />
+      <AdminControlSection />
       <ControlSection />
       <SecuritySection />
       <TestimonialsSection />
