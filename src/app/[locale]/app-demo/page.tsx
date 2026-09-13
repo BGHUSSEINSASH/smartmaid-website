@@ -1,6 +1,6 @@
 "use client";
 import { useLocale } from "next-intl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function AppDemoPage() {
   const locale = useLocale();
@@ -9,35 +9,64 @@ export default function AppDemoPage() {
   const [view, setView] = useState<"mobile" | "tablet" | "fullscreen">("mobile");
 
   const sizes = {
-    mobile:     { w: 390,  h: 844,  label: ar ? "📱 هاتف"  : "📱 Phone"  },
+    mobile:     { w: 393,  h: 852,  label: ar ? "📱 هاتف"  : "📱 Phone"  },
     tablet:     { w: 768,  h: 1024, label: ar ? "📟 تابلت" : "📟 Tablet" },
     fullscreen: { w: 0,    h: 0,    label: ar ? "🖥️ ملء الشاشة" : "🖥️ Fullscreen" },
   };
 
+  // ── وضع ملء الشاشة ─────────────────────────────────────────────────
   if (view === "fullscreen") {
     return (
-      <div style={{ width: "100vw", height: "100dvh", display: "flex", flexDirection: "column", background: "#0B0918" }}>
-        {/* Top bar */}
-        <div style={{ height: 48, background: "rgba(255,255,255,.04)", borderBottom: "1px solid rgba(255,255,255,.08)", display: "flex", alignItems: "center", paddingInline: 16, gap: 12, flexShrink: 0 }}>
-          <a href={`/${locale}`} style={{ color: "rgba(255,255,255,.6)", fontSize: ".8rem", textDecoration: "none", display: "flex", alignItems: "center", gap: 6 }}>
-            ← {ar ? "العودة للموقع" : "Back to site"}
-          </a>
-          <span style={{ fontSize: ".8rem", color: "rgba(255,255,255,.3)" }}>|</span>
-          <span style={{ fontSize: ".85rem", fontWeight: 700, color: "#fff" }}>SmartMaid Web App</span>
-          <div style={{ marginInlineStart: "auto", display: "flex", gap: 8 }}>
+      <div style={{ width:"100vw", height:"100dvh", display:"flex", flexDirection:"column", background:"#02021E" }}>
+        <div style={{
+          height: 50,
+          background: "rgba(3,4,90,.95)",
+          borderBottom: "1px solid rgba(255,255,255,.08)",
+          display: "flex", alignItems: "center",
+          paddingInline: 20, gap: 14, flexShrink: 0,
+          backdropFilter: "blur(20px)",
+        }}>
+          {/* شعار */}
+          <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+            <img src="/icon-192.png" alt="شغّالتي" width={30} height={30}
+              style={{ borderRadius:8 }} />
+            <span style={{ fontWeight:900, color:"#fff", fontSize:"1rem" }}>
+              {ar ? "شغّالتي" : "Shaghalti"}
+            </span>
+            <span style={{
+              background:"rgba(6,182,212,.18)", border:"1px solid rgba(6,182,212,.35)",
+              color:"#67e8f9", fontSize:".68rem", fontWeight:700,
+              padding:".2rem .6rem", borderRadius:99
+            }}>
+              {ar ? "نسخة تجريبية" : "Demo"}
+            </span>
+          </div>
+
+          <div style={{ marginInlineStart:"auto", display:"flex", gap:8 }}>
             {(["mobile","tablet"] as const).map(v => (
-              <button key={v} onClick={() => setView(v)} style={{ padding: ".3rem .75rem", borderRadius: 8, border: "1px solid rgba(255,255,255,.15)", background: "transparent", color: "rgba(255,255,255,.6)", cursor: "pointer", fontSize: ".78rem" }}>
-                {sizes[v].label}
-              </button>
+              <button key={v} onClick={() => setView(v)} style={{
+                padding:".3rem .8rem", borderRadius:8,
+                border:"1px solid rgba(255,255,255,.15)",
+                background:"transparent", color:"rgba(255,255,255,.6)",
+                cursor:"pointer", fontSize:".78rem", fontWeight:600,
+              }}>{sizes[v].label}</button>
             ))}
+            <a href={`/${locale}`} style={{
+              padding:".3rem .8rem", borderRadius:8,
+              border:"1px solid rgba(255,255,255,.15)",
+              color:"rgba(255,255,255,.5)", textDecoration:"none",
+              fontSize:".78rem", display:"flex", alignItems:"center", gap:4,
+            }}>
+              {ar ? "← العودة" : "← Back"}
+            </a>
           </div>
         </div>
         <iframe
           src="/app/index.html"
-          style={{ flex: 1, border: "none", width: "100%", height: "100%" }}
+          style={{ flex:1, border:"none", width:"100%", height:"100%" }}
           onLoad={() => setLoaded(true)}
-          allow="camera; microphone; geolocation"
-          title="SmartMaid App"
+          allow="camera; microphone; geolocation; clipboard-write"
+          title="شغّالتي App"
         />
       </div>
     );
@@ -46,154 +75,364 @@ export default function AppDemoPage() {
   const sz = sizes[view];
 
   return (
-    <div style={{ minHeight: "100dvh", background: "linear-gradient(160deg,#0B0918 0%,#1C1640 50%,#0B0918 100%)", position: "relative", overflow: "hidden" }}>
-      {/* bg dots */}
-      <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle, rgba(79,70,229,.15) 1px, transparent 1px)", backgroundSize: "28px 28px", pointerEvents: "none" }} />
-      {/* glows */}
-      <div style={{ position: "absolute", width: 500, height: 500, borderRadius: "50%", background: "rgba(79,70,229,.2)", filter: "blur(100px)", top: "30%", left: "50%", transform: "translateX(-50%)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", width: 300, height: 300, borderRadius: "50%", background: "rgba(6,182,212,.12)", filter: "blur(80px)", top: "10%", right: "5%", pointerEvents: "none" }} />
+    <div style={{
+      minHeight:"100dvh",
+      background:"linear-gradient(160deg, #02021E 0%, #03045A 50%, #02021E 100%)",
+      position:"relative", overflow:"hidden",
+      fontFamily:"Cairo, Sora, sans-serif",
+    }}>
+      {/* خلفية نقاط */}
+      <div style={{
+        position:"absolute", inset:0,
+        backgroundImage:"radial-gradient(circle, rgba(3,83,164,.18) 1px, transparent 1px)",
+        backgroundSize:"30px 30px", pointerEvents:"none",
+      }} />
 
-      {/* Nav bar */}
-      <div style={{ position: "sticky", top: 0, zIndex: 50, backdropFilter: "blur(20px)", background: "rgba(11,9,24,.8)", borderBottom: "1px solid rgba(255,255,255,.08)", padding: ".75rem 0" }}>
-        <div style={{ maxWidth: 1160, marginInline: "auto", paddingInline: "clamp(1.25rem,5vw,2.5rem)", display: "flex", alignItems: "center", gap: 16 }}>
-          <a href={`/${locale}`} style={{ display: "flex", alignItems: "center", gap: 8, color: "rgba(255,255,255,.7)", textDecoration: "none", fontSize: ".875rem", fontWeight: 600, transition: "color .15s" }}
-            onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.color = "#fff"}
-            onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,.7)"}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      {/* توهّج خلفي */}
+      <div style={{
+        position:"absolute", width:600, height:600, borderRadius:"50%",
+        background:"rgba(3,83,164,.22)", filter:"blur(120px)",
+        top:"25%", left:"50%", transform:"translateX(-50%)", pointerEvents:"none",
+      }} />
+      <div style={{
+        position:"absolute", width:300, height:300, borderRadius:"50%",
+        background:"rgba(3,62,138,.18)", filter:"blur(80px)",
+        top:"5%", right:"8%", pointerEvents:"none",
+      }} />
+
+      {/* ── شريط التنقل ──────────────────────────────────────────── */}
+      <div style={{
+        position:"sticky", top:0, zIndex:50,
+        backdropFilter:"blur(20px)",
+        background:"rgba(2,2,30,.85)",
+        borderBottom:"1px solid rgba(255,255,255,.07)",
+        padding:".7rem 0",
+      }}>
+        <div style={{
+          maxWidth:1160, marginInline:"auto",
+          paddingInline:"clamp(1rem,5vw,2.5rem)",
+          display:"flex", alignItems:"center", gap:14,
+        }}>
+          <a href={`/${locale}`} style={{
+            display:"flex", alignItems:"center", gap:6,
+            color:"rgba(255,255,255,.65)", textDecoration:"none",
+            fontSize:".875rem", fontWeight:600,
+          }}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2.5">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
             {ar ? "العودة" : "Back"}
           </a>
-          <div style={{ width: 1, height: 20, background: "rgba(255,255,255,.12)" }} />
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <img src="/logos/logo-glass.svg" width={26} height={26} alt="SmartMaid" />
-            <span style={{ fontWeight: 800, color: "#fff", fontSize: ".95rem" }}>SmartMaid</span>
-            <span style={{ background: "rgba(6,182,212,.2)", border: "1px solid rgba(6,182,212,.35)", color: "#67e8f9", fontSize: ".68rem", fontWeight: 700, padding: ".2rem .55rem", borderRadius: 99 }}>
-              {ar ? "نسخة تجريبية" : "Demo"}
+
+          <div style={{ width:1, height:20, background:"rgba(255,255,255,.1)" }} />
+
+          {/* شعار شغّالتي */}
+          <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+            <img src="/icon-192.png" alt="شغّالتي" width={32} height={32}
+              style={{ borderRadius:9, boxShadow:"0 4px 12px rgba(3,5,90,.4)" }} />
+            <div>
+              <div style={{ fontWeight:900, color:"#fff", fontSize:".95rem", lineHeight:1 }}>
+                {ar ? "شغّالتي" : "Shaghalti"}
+              </div>
+              <div style={{ fontSize:".65rem", color:"rgba(255,255,255,.4)", lineHeight:1.2 }}>
+                SmartMaid
+              </div>
+            </div>
+            <span style={{
+              background:"rgba(6,182,212,.18)", border:"1px solid rgba(6,182,212,.3)",
+              color:"#67e8f9", fontSize:".68rem", fontWeight:700,
+              padding:".2rem .55rem", borderRadius:99,
+            }}>
+              {ar ? "تجريبي" : "Demo"}
             </span>
           </div>
 
-          {/* View switcher */}
-          <div style={{ marginInlineStart: "auto", display: "flex", gap: 6 }}>
+          {/* مبدّل العرض */}
+          <div style={{ marginInlineStart:"auto", display:"flex", gap:6 }}>
             {(["mobile","tablet","fullscreen"] as const).map(v => (
               <button key={v} onClick={() => setView(v)} style={{
-                padding: ".4rem .85rem", borderRadius: 10, fontSize: ".8rem", fontWeight: 700, cursor: "pointer", transition: "all .2s",
-                background: view === v ? "rgba(79,70,229,.3)" : "transparent",
-                border: `1px solid ${view === v ? "rgba(79,70,229,.5)" : "rgba(255,255,255,.12)"}`,
-                color: view === v ? "#c7d2fe" : "rgba(255,255,255,.5)",
+                padding:".38rem .85rem", borderRadius:10,
+                fontSize:".78rem", fontWeight:700, cursor:"pointer",
+                transition:"all .2s",
+                background: view===v ? "rgba(3,83,164,.35)" : "transparent",
+                border: `1px solid ${view===v ? "rgba(3,83,164,.55)" : "rgba(255,255,255,.1)"}`,
+                color: view===v ? "#93c5fd" : "rgba(255,255,255,.45)",
               }}>{sizes[v].label}</button>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "clamp(2rem,5vw,4rem) clamp(1rem,4vw,2rem)", position: "relative", zIndex: 2 }}>
-        {/* Title */}
-        <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
-          <h1 style={{ fontSize: "clamp(1.6rem,3.5vw,2.8rem)", fontWeight: 900, color: "#fff", marginBottom: ".75rem", letterSpacing: "-.025em" }}>
-            {ar ? <>جرّب <span style={{ background: "linear-gradient(135deg,#818cf8,#67e8f9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>SmartMaid</span> الآن</> : <>Try <span style={{ background: "linear-gradient(135deg,#818cf8,#67e8f9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>SmartMaid</span> Now</>}
-          </h1>
-          <p style={{ color: "rgba(255,255,255,.55)", fontSize: "1rem", maxWidth: 480, marginInline: "auto", lineHeight: 1.7 }}>
+      {/* ── المحتوى الرئيسي ──────────────────────────────────────── */}
+      <div style={{
+        display:"flex", flexDirection:"column", alignItems:"center",
+        padding:"clamp(2rem,5vw,4rem) clamp(1rem,4vw,2rem)",
+        position:"relative", zIndex:2,
+      }}>
+
+        {/* ── العنوان ────────────────────────────────────────────── */}
+        <div style={{ textAlign:"center", marginBottom:"2.5rem" }}>
+          {/* شعار كبير */}
+          <div style={{ display:"flex", justifyContent:"center", marginBottom:20 }}>
+            <div style={{ position:"relative" }}>
+              <img src="/icon-192.png" alt="شغّالتي" width={80} height={80}
+                style={{
+                  borderRadius:22,
+                  boxShadow:"0 20px 50px rgba(3,5,90,.6), 0 0 0 1px rgba(255,255,255,.08)",
+                }} />
+              <div style={{
+                position:"absolute", inset:-1,
+                borderRadius:22, border:"1px solid rgba(255,255,255,.15)",
+                pointerEvents:"none",
+              }} />
+            </div>
+          </div>
+
+          <h1 style={{
+            fontSize:"clamp(1.8rem,4vw,3rem)", fontWeight:900,
+            color:"#fff", marginBottom:".75rem", letterSpacing:"-.03em",
+          }}>
             {ar
-              ? "جرّب التطبيق كاملاً مباشرة من متصفحك — بدون تحميل، بدون تسجيل"
-              : "Try the full app directly from your browser — no download, no signup needed"}
+              ? <>جرّب <span style={{
+                  background:"linear-gradient(135deg,#60a5fa,#93c5fd)",
+                  WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent",
+                  backgroundClip:"text",
+                }}>شغّالتي</span> الآن</>
+              : <>Try <span style={{
+                  background:"linear-gradient(135deg,#60a5fa,#93c5fd)",
+                  WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent",
+                  backgroundClip:"text",
+                }}>Shaghalti</span> Now</>
+            }
+          </h1>
+
+          <p style={{
+            color:"rgba(255,255,255,.55)", fontSize:"1rem",
+            maxWidth:520, marginInline:"auto", lineHeight:1.75,
+          }}>
+            {ar
+              ? "جرّب التطبيق كاملاً مباشرة من متصفحك — بحث ذكي، حجز، إدارة، بدون تحميل"
+              : "Try the full app from your browser — AI search, booking, admin panel, no download needed"}
           </p>
-          {/* Demo accounts hint */}
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: "1rem", padding: ".5rem 1.1rem", borderRadius: 99, background: "rgba(255,255,255,.06)", border: "1px solid rgba(255,255,255,.1)", fontSize: ".78rem", color: "rgba(255,255,255,.5)" }}>
-            💡 {ar ? "حسابات تجريبية: اضغط زر الدخول السريع" : "Demo accounts: tap the quick login button"}
+
+          {/* تلميح الحسابات */}
+          <div style={{
+            display:"inline-flex", alignItems:"center", gap:8, marginTop:"1rem",
+            padding:".5rem 1.2rem", borderRadius:99,
+            background:"rgba(255,255,255,.06)", border:"1px solid rgba(255,255,255,.1)",
+            fontSize:".78rem", color:"rgba(255,255,255,.5)",
+          }}>
+            💡 {ar ? "اضغط 'دخول سريع' داخل التطبيق" : "Tap 'Quick Login' inside the app"}
           </div>
         </div>
 
-        {/* Device frame */}
-        <div style={{ position: "relative" }}>
-          {/* Device outer frame */}
+        {/* ── إطار الجهاز ─────────────────────────────────────── */}
+        <div style={{ position:"relative" }}>
+          {/* الإطار الخارجي */}
           <div style={{
-            width: sz.w + 24, borderRadius: view === "mobile" ? 52 : 28,
-            background: "linear-gradient(160deg, #2a2440, #1a1535)",
-            padding: view === "mobile" ? "12px" : "8px",
-            boxShadow: "0 40px 120px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.08) inset, 0 0 80px rgba(79,70,229,.2)",
-            position: "relative",
+            width: sz.w + 28,
+            borderRadius: view==="mobile" ? 54 : 28,
+            background:"linear-gradient(160deg, #1a1535, #0d0b24)",
+            padding: view==="mobile" ? "14px" : "10px",
+            boxShadow:[
+              "0 40px 120px rgba(0,0,0,.75)",
+              "0 0 0 1px rgba(255,255,255,.07) inset",
+              "0 0 100px rgba(3,83,164,.25)",
+            ].join(","),
+            position:"relative",
           }}>
-            {/* Home indicator / notch for mobile */}
-            {view === "mobile" && (
+            {/* notch للهاتف */}
+            {view==="mobile" && (
               <>
-                <div style={{ position: "absolute", top: 22, left: "50%", transform: "translateX(-50%)", width: 100, height: 6, background: "rgba(255,255,255,.12)", borderRadius: 99, zIndex: 10 }} />
-                <div style={{ position: "absolute", bottom: 14, left: "50%", transform: "translateX(-50%)", width: 120, height: 4, background: "rgba(255,255,255,.2)", borderRadius: 99, zIndex: 10 }} />
+                <div style={{
+                  position:"absolute", top:24, left:"50%",
+                  transform:"translateX(-50%)",
+                  width:110, height:6,
+                  background:"rgba(255,255,255,.1)", borderRadius:99, zIndex:10,
+                }} />
+                <div style={{
+                  position:"absolute", bottom:16, left:"50%",
+                  transform:"translateX(-50%)",
+                  width:130, height:4,
+                  background:"rgba(255,255,255,.18)", borderRadius:99, zIndex:10,
+                }} />
               </>
             )}
 
-            {/* Screen */}
+            {/* الشاشة */}
             <div style={{
-              width: sz.w, height: sz.h,
-              borderRadius: view === "mobile" ? 42 : 20,
-              overflow: "hidden", position: "relative",
-              background: "#0f0c24",
+              width:sz.w, height:sz.h,
+              borderRadius: view==="mobile" ? 42 : 20,
+              overflow:"hidden", position:"relative",
+              background:"#02021E",
             }}>
-              {/* Loader overlay */}
+              {/* شاشة تحميل */}
               {!loaded && (
-                <div style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "linear-gradient(160deg,#0B0918,#1C1640)", zIndex: 20 }}>
-                  <img src="/logos/logo-glass.svg" width={56} height={56} alt="" style={{ marginBottom: 16, animation: "pulse 2s infinite" }} />
-                  <div style={{ fontSize: ".9rem", color: "rgba(255,255,255,.6)", marginBottom: 12 }}>
-                    {ar ? "جارٍ تحميل التطبيق..." : "Loading the app..."}
+                <div style={{
+                  position:"absolute", inset:0, zIndex:20,
+                  display:"flex", flexDirection:"column",
+                  alignItems:"center", justifyContent:"center",
+                  background:"linear-gradient(160deg,#02021E,#03045A)",
+                }}>
+                  <img src="/icon-192.png" alt="" width={72} height={72}
+                    style={{
+                      borderRadius:20, marginBottom:20,
+                      boxShadow:"0 12px 40px rgba(3,5,90,.5)",
+                      animation:"iconPulse 1.8s ease-in-out infinite",
+                    }} />
+                  <div style={{ fontSize:"1rem", fontWeight:700, color:"rgba(255,255,255,.8)", marginBottom:6 }}>
+                    {ar ? "شغّالتي" : "Shaghalti"}
                   </div>
-                  <div style={{ width: 120, height: 3, borderRadius: 99, background: "rgba(255,255,255,.1)", overflow: "hidden" }}>
-                    <div style={{ height: "100%", borderRadius: 99, background: "linear-gradient(90deg,#4F46E5,#06B6D4)", animation: "shimmer 1.5s ease-in-out infinite", backgroundSize: "200% 100%" }} />
+                  <div style={{ fontSize:".82rem", color:"rgba(255,255,255,.45)", marginBottom:20 }}>
+                    {ar ? "جارٍ تحميل التطبيق..." : "Loading app..."}
+                  </div>
+                  <div style={{
+                    width:140, height:3, borderRadius:99,
+                    background:"rgba(255,255,255,.1)", overflow:"hidden",
+                  }}>
+                    <div style={{
+                      height:"100%", borderRadius:99,
+                      background:"linear-gradient(90deg,#03045A,#0353A4,#03045A)",
+                      backgroundSize:"200% 100%",
+                      animation:"loadShimmer 1.4s ease-in-out infinite",
+                    }} />
                   </div>
                 </div>
               )}
 
               <iframe
                 src="/app/index.html"
-                style={{ width: "100%", height: "100%", border: "none", display: "block" }}
+                style={{ width:"100%", height:"100%", border:"none", display:"block" }}
                 onLoad={() => setLoaded(true)}
-                allow="camera; microphone; geolocation"
-                title="SmartMaid App"
+                allow="camera; microphone; geolocation; clipboard-write"
+                title={ar ? "شغّالتي" : "Shaghalti App"}
               />
             </div>
           </div>
 
-          {/* Glow under device */}
-          <div style={{ position: "absolute", bottom: -40, left: "50%", transform: "translateX(-50%)", width: "80%", height: 60, background: "rgba(79,70,229,.35)", filter: "blur(30px)", borderRadius: "50%", pointerEvents: "none" }} />
+          {/* توهّج تحت الجهاز */}
+          <div style={{
+            position:"absolute", bottom:-50, left:"50%",
+            transform:"translateX(-50%)",
+            width:"75%", height:70,
+            background:"rgba(3,83,164,.4)",
+            filter:"blur(35px)", borderRadius:"50%",
+            pointerEvents:"none",
+          }} />
         </div>
 
-        {/* Login hints */}
-        <div style={{ marginTop: "3rem", display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 12 }}>
-          {[
-            { role: ar ? "👤 عميل" : "👤 Customer", email: "customer@demo.com", color: "#4F46E5" },
-            { role: ar ? "👩‍🔧 عاملة" : "👩‍🔧 Maid", email: "worker@demo.com", color: "#06B6D4" },
-            { role: ar ? "🏢 شركة" : "🏢 Company", email: "company@demo.com", color: "#8B5CF6" },
-            { role: ar ? "🛡️ إدارة" : "🛡️ Admin", email: "admin@demo.com", color: "#10B981" },
-          ].map(item => (
-            <div key={item.email} style={{ padding: ".65rem 1.25rem", borderRadius: 14, background: "rgba(255,255,255,.05)", border: "1px solid rgba(255,255,255,.08)", textAlign: "center" }}>
-              <div style={{ fontSize: ".9rem", fontWeight: 800, color: item.color, marginBottom: 2 }}>{item.role}</div>
-              <div style={{ fontSize: ".72rem", color: "rgba(255,255,255,.4)", fontFamily: "monospace" }}>{item.email}</div>
-              <div style={{ fontSize: ".68rem", color: "rgba(255,255,255,.25)", marginTop: 1 }}>Passw0rd!</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Download CTA */}
-        <div style={{ marginTop: "2.5rem", textAlign: "center" }}>
-          <p style={{ color: "rgba(255,255,255,.35)", fontSize: ".82rem", marginBottom: ".75rem" }}>
-            {ar ? "تريد التجربة الكاملة؟" : "Want the full experience?"}
+        {/* ── حسابات الدخول ────────────────────────────────────── */}
+        <div style={{ marginTop:"3rem" }}>
+          <p style={{
+            textAlign:"center", color:"rgba(255,255,255,.35)",
+            fontSize:".82rem", marginBottom:"1rem",
+          }}>
+            {ar ? "🔑 حسابات تجريبية" : "🔑 Demo Accounts"}
           </p>
-          <div style={{ display: "flex", justifyContent: "center", gap: 10 }}>
-            <a href="#" style={{ display: "flex", alignItems: "center", gap: 8, background: "#fff", color: "#0B0918", padding: ".65rem 1.4rem", borderRadius: 12, fontWeight: 800, textDecoration: "none", fontSize: ".85rem", transition: "transform .2s" }}
-              onMouseEnter={e => (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"}
-              onMouseLeave={e => (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"}>
-              📱 App Store
+          <div style={{ display:"flex", flexWrap:"wrap", justifyContent:"center", gap:12 }}>
+            {[
+              { role: ar ? "👤 عميل"   : "👤 Customer", color:"#3B82F6", hint: ar ? "حجز خدمات" : "Book services" },
+              { role: ar ? "👩 عاملة"  : "👩 Maid",     color:"#8B5CF6", hint: ar ? "إدارة جدول" : "Manage schedule" },
+              { role: ar ? "🏢 شركة"   : "🏢 Company",  color:"#06B6D4", hint: ar ? "لوحة تحكم" : "Dashboard" },
+              { role: ar ? "🛡️ إدارة"  : "🛡️ Admin",    color:"#10B981", hint: ar ? "تحكم كامل" : "Full control" },
+            ].map(item => (
+              <div key={item.role} style={{
+                padding:".7rem 1.3rem", borderRadius:14,
+                background:"rgba(255,255,255,.04)",
+                border:`1px solid ${item.color}30`,
+                textAlign:"center", minWidth:110,
+              }}>
+                <div style={{ fontSize:".95rem", fontWeight:800, color:item.color, marginBottom:3 }}>
+                  {item.role}
+                </div>
+                <div style={{ fontSize:".72rem", color:"rgba(255,255,255,.35)" }}>
+                  {item.hint}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── روابط التحميل ───────────────────────────────────── */}
+        <div style={{ marginTop:"2.5rem", textAlign:"center" }}>
+          <p style={{ color:"rgba(255,255,255,.3)", fontSize:".82rem", marginBottom:".9rem" }}>
+            {ar ? "حمّل التطبيق على جهازك" : "Download the app on your device"}
+          </p>
+          <div style={{ display:"flex", justifyContent:"center", gap:10, flexWrap:"wrap" }}>
+            <a
+              href="https://github.com/BGHUSSEINSASH/smartmaid-app/releases/download/v1.0.0/SmartMaid-v1.0.0-arm64-NewLogo.apk"
+              style={{
+                display:"flex", alignItems:"center", gap:8,
+                background:"#fff", color:"#03045A",
+                padding:".7rem 1.5rem", borderRadius:12,
+                fontWeight:800, textDecoration:"none", fontSize:".88rem",
+                boxShadow:"0 8px 24px rgba(0,0,0,.3)",
+              }}
+            >
+              <svg width="18" height="18" fill="#3DDC84" viewBox="0 0 24 24">
+                <path d="M3.18 23.76A1 1 0 012 22.84V1.16A1 1 0 013.18.24l11.67 11.76-11.67 11.76z"/>
+              </svg>
+              {ar ? "Android APK" : "Android APK"}
             </a>
-            <a href="#" style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,.1)", border: "1px solid rgba(255,255,255,.15)", color: "#fff", padding: ".65rem 1.4rem", borderRadius: 12, fontWeight: 800, textDecoration: "none", fontSize: ".85rem", transition: "all .2s" }}
-              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,.18)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(-2px)"; }}
-              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,.1)"; (e.currentTarget as HTMLAnchorElement).style.transform = "translateY(0)"; }}>
-              ▶ Google Play
+            <a
+              href="https://github.com/BGHUSSEINSASH/smartmaid-app/releases/tag/v1.0.0"
+              style={{
+                display:"flex", alignItems:"center", gap:8,
+                background:"rgba(255,255,255,.08)",
+                border:"1px solid rgba(255,255,255,.15)",
+                color:"#fff",
+                padding:".7rem 1.5rem", borderRadius:12,
+                fontWeight:800, textDecoration:"none", fontSize:".88rem",
+              }}
+            >
+              <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+              </svg>
+              GitHub Releases
             </a>
           </div>
+        </div>
+
+        {/* ── مميزات سريعة ─────────────────────────────────────── */}
+        <div style={{
+          marginTop:"3rem",
+          display:"grid",
+          gridTemplateColumns:"repeat(auto-fit, minmax(160px, 1fr))",
+          gap:12, maxWidth:700, width:"100%",
+        }}>
+          {[
+            { icon:"🤖", title: ar?"بحث ذكي AI":"AI Smart Search"  },
+            { icon:"🎤", title: ar?"بحث صوتي":"Voice Search"       },
+            { icon:"📅", title: ar?"حجز سنوي":"Annual Booking"     },
+            { icon:"💎", title: ar?"اشتراك Pro":"Pro Subscription"  },
+            { icon:"🛡️", title: ar?"تحكم إداري":"Admin Control"    },
+            { icon:"💳", title: ar?"دفع بالمحفظة":"Wallet Payment"   },
+          ].map(f => (
+            <div key={f.icon} style={{
+              padding:".85rem", borderRadius:14,
+              background:"rgba(255,255,255,.04)",
+              border:"1px solid rgba(255,255,255,.07)",
+              textAlign:"center",
+            }}>
+              <div style={{ fontSize:"1.4rem", marginBottom:6 }}>{f.icon}</div>
+              <div style={{ fontSize:".8rem", fontWeight:700, color:"rgba(255,255,255,.7)" }}>
+                {f.title}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
       <style>{`
-        @keyframes shimmer { 0%{background-position:-200% 0} 100%{background-position:200% 0} }
-        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.7;transform:scale(.95)} }
+        @keyframes loadShimmer {
+          0%   { background-position: -200% 0 }
+          100% { background-position:  200% 0 }
+        }
+        @keyframes iconPulse {
+          0%,100% { opacity:1; transform:scale(1) }
+          50%     { opacity:.75; transform:scale(.93) }
+        }
       `}</style>
     </div>
   );
