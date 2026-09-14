@@ -28,9 +28,11 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: "1rem" }}>
-              <img src="/logos/logo-glass.svg" width={32} height={32} alt="SmartMaid"
-                style={{ filter: "drop-shadow(0 2px 6px rgba(79,70,229,.4))" }} />
-              <span style={{ fontWeight: 900, fontSize: "1rem" }}>Smart<span className="gt-brand">Maid</span></span>
+              <img src="/logo.png" width={40} height={40} alt="شغّالتي"
+                style={{ borderRadius: 11, boxShadow: "0 2px 12px rgba(3,5,90,.18)" }} />
+              <span style={{ fontWeight: 900, fontSize: "1.05rem" }}>
+                {ar ? "شغّالتي" : "Shaghalti"}
+              </span>
             </div>
             <p style={{ fontSize: ".875rem", color: "var(--text-2)", maxWidth: 240, lineHeight: 1.75 }}>
               {ar ? "خدمات منزلية احترافية بلمسة واحدة في جميع أنحاء الخليج." : "Professional home services in one tap across the Gulf."}

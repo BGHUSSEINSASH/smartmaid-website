@@ -129,8 +129,8 @@ export default function AppDemoPage() {
 
           {/* شعار شغّالتي */}
           <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-            <img src="/icon-192.png" alt="شغّالتي" width={32} height={32}
-              style={{ borderRadius:9, boxShadow:"0 4px 12px rgba(3,5,90,.4)" }} />
+            <img src="/logo.png" alt="شغّالتي" width={34} height={34}
+              style={{ borderRadius:10, boxShadow:"0 4px 12px rgba(3,5,90,.3)" }} />
             <div>
               <div style={{ fontWeight:900, color:"#fff", fontSize:".95rem", lineHeight:1 }}>
                 {ar ? "شغّالتي" : "Shaghalti"}

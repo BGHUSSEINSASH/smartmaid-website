@@ -28,9 +28,10 @@ export default function Navbar() {
       <nav className="mx" style={{ height:68, display:"flex", alignItems:"center", gap:24 }}>
         {/* Logo */}
         <a href={`/${locale}#hero`} style={{ textDecoration:"none", color:"inherit", display:"flex", alignItems:"center", gap:10, fontWeight:900 }}>
-          <img src="/logos/logo-glass.svg" width={34} height={34} alt="SmartMaid" style={{ filter:"drop-shadow(0 2px 8px rgba(79,70,229,.45))" }} />
-          <span style={{ fontSize:"1.05rem", color:scrolled?"var(--gray-900)":"#fff" }}>
-            Smart<span className="gt-brand">Maid</span>
+          <img src="/logo.png" width={38} height={38} alt="شغّالتي"
+            style={{ borderRadius:10, boxShadow:"0 2px 10px rgba(3,5,90,.2)" }} />
+          <span style={{ fontSize:"1.1rem", color:scrolled?"var(--gray-900)":"#fff", fontWeight:900 }}>
+            {ar ? "شغّالتي" : "Shaghalti"}
           </span>
         </a>
 
