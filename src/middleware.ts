@@ -4,4 +4,7 @@ export default createMiddleware({
   defaultLocale: 'ar',
   localePrefix: 'always'
 });
-export const config = { matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'] };
+export const config = {
+  // استثناء /app/ (Flutter Web) و /api/ و ملفات Next.js الثابتة
+  matcher: ['/((?!api|_next|_vercel|app|.*\\..*).*)']
+};
