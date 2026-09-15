@@ -1,119 +1,144 @@
-<!DOCTYPE html><html><head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
   <base href="/app/">
-
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="شغّالتي — خدمات منزلية ذكية بالذكاء الاصطناعي والبحث الصوتي. احجز عاملات موثّقات خلال دقيقة.">
+  <meta name="keywords" content="شغالتي, خدمات منزلية, عاملات, تنظيف, SmartMaid">
+  <meta name="theme-color" content="#03045A">
 
-  <!-- iOS meta tags & icons -->
+  <!-- iOS -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="smart_maid_app">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="شغّالتي">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="شغّالتي | SmartMaid">
+  <meta property="og:description" content="خدمات منزلية ذكية بالذكاء الاصطناعي">
+  <meta property="og:image" content="/icon-512.png">
+  <meta property="og:type" content="website">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/png" href="/favicon.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
 
-  <title>smart_maid_app</title>
+  <title>شغّالتي | SmartMaid</title>
   <link rel="manifest" href="manifest.json">
-  <style id="splash-screen-style">
-    html {
-      height: 100%
-    }
 
+  <style id="splash-screen-style">
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { height: 100%; }
     body {
       margin: 0;
       min-height: 100%;
-      background-color: #4F46E5;
-          background-size: 100% 100%;
+      background-color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-    .center {
-      margin: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
-    }
-
-    .contain {
-      display:block;
-      width:100%; height:100%;
-      object-fit: contain;
-    }
-
-    .stretch {
-      display:block;
-      width:100%; height:100%;
-    }
-
-    .cover {
-      display:block;
-      width:100%; height:100%;
-      object-fit: cover;
-    }
-
-    .bottom {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      -ms-transform: translate(-50%, 0);
-      transform: translate(-50%, 0);
-    }
-
-    .bottomLeft {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-
-    .bottomRight {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
-
     @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #0F172A;
-          }
+      body { background-color: #02021E; }
     }
+    #splash-loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      position: fixed;
+      inset: 0;
+      background: #FFFFFF;
+      z-index: 9999;
+      transition: opacity 0.4s ease;
+    }
+    @media (prefers-color-scheme: dark) {
+      #splash-loader { background: #02021E; }
+    }
+    #splash-loader svg { width: min(40vw, 160px); height: min(40vw, 160px); }
+    #splash-loader .app-name {
+      font-family: 'Cairo', 'Segoe UI', system-ui, sans-serif;
+      font-size: clamp(24px, 6vw, 42px);
+      font-weight: 900;
+      color: #03045A;
+      letter-spacing: -0.5px;
+    }
+    @media (prefers-color-scheme: dark) {
+      #splash-loader .app-name { color: #FFFFFF; }
+    }
+    #splash-loader .spinner {
+      width: 28px; height: 28px;
+      border: 2.5px solid rgba(3,4,90,0.15);
+      border-top-color: #03045A;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @media (prefers-color-scheme: dark) {
+      #splash-loader .spinner {
+        border-color: rgba(255,255,255,0.15);
+        border-top-color: rgba(255,255,255,0.7);
+      }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .center { margin: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .contain { display:block; width:100%; height:100%; object-fit: contain; }
+    .bottom { position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 0); }
   </style>
+
   <script id="splash-screen-script">
     function removeSplashFromWeb() {
+      const splash = document.getElementById("splash-loader");
+      if (splash) {
+        splash.style.opacity = "0";
+        setTimeout(() => splash.remove(), 400);
+      }
       document.getElementById("splash")?.remove();
       document.getElementById("splash-branding")?.remove();
       document.body.style.background = "transparent";
     }
   </script>
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 </head>
 <body>
-  <picture id="splash-branding">
-    <source srcset="splash/img/branding-1x.png 1x, splash/img/branding-2x.png 2x, splash/img/branding-3x.png 3x, splash/img/branding-4x.png 4x" media="(prefers-color-scheme: light)">
-    <source srcset="splash/img/branding-dark-1x.png 1x, splash/img/branding-dark-2x.png 2x, splash/img/branding-dark-3x.png 3x, splash/img/branding-dark-4x.png 4x" media="(prefers-color-scheme: dark)">
-    <img class="bottom" aria-hidden="true" src="splash/img/branding-1x.png" alt="">
-  </picture>
-  <picture id="splash">
-      <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x" media="(prefers-color-scheme: light)">
-      <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x" media="(prefers-color-scheme: dark)">
-      <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
-  </picture>
+  <!-- شاشة تحميل مخصصة -->
+  <div id="splash-loader">
+    <!-- شعار شغّالتي (X الأزرق) -->
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#5050E0"/>
+          <stop offset="100%" style="stop-color:#2020B5"/>
+        </linearGradient>
+        <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#4040D0"/>
+          <stop offset="100%" style="stop-color:#1E1EA8"/>
+        </linearGradient>
+        <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#2E2EC0"/>
+          <stop offset="100%" style="stop-color:#181898"/>
+        </linearGradient>
+        <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#3838C8"/>
+          <stop offset="100%" style="stop-color:#1A1AA0"/>
+        </linearGradient>
+      </defs>
+      <!-- TL pad -->
+      <path d="M4,4 L4,44 Q4,48 8,48 L48,48 L48,8 Q48,4 44,4 Z" fill="url(#g1)" stroke="#C8DAFF" stroke-width="0.6"/>
+      <!-- TR pad -->
+      <path d="M96,4 L96,44 Q96,48 92,48 L52,48 L52,8 Q52,4 56,4 Z" fill="url(#g2)" stroke="#C8DAFF" stroke-width="0.6"/>
+      <!-- BR pad -->
+      <path d="M96,96 L96,56 Q96,52 92,52 L52,52 L52,92 Q52,96 56,96 Z" fill="url(#g3)" stroke="#C8DAFF" stroke-width="0.6"/>
+      <!-- BL pad -->
+      <path d="M4,96 L4,56 Q4,52 8,52 L48,52 L48,92 Q48,96 44,96 Z" fill="url(#g4)" stroke="#C8DAFF" stroke-width="0.6"/>
+      <!-- لمعة -->
+      <ellipse cx="35" cy="20" rx="18" ry="8" fill="rgba(255,255,255,0.18)"/>
+    </svg>
+    <div class="app-name">شغّالتي</div>
+    <div class="spinner"></div>
+  </div>
+
   <script src="flutter_bootstrap.js" async=""></script>
-
-
-</body></html>
+</body>
+</html>
