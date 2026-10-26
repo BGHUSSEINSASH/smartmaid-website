@@ -117,13 +117,6 @@ export default function HeroSection() {
 
           {/* ── Text column ── */}
           <div style={{ display: "flex", flexDirection: "column", gap: "1.75rem", order: ar ? 2 : 1 }}>
-            {/* Badge */}
-            <div className="anim-up">
-              <span className="badge badge-dark">
-                <span className="pulse" />
-                {ar ? "احجز عاملتك الموثّقة الآن" : "Book verified maids today"}
-              </span>
-            </div>
 
             {/* Headline */}
             <div className="anim-up2">
