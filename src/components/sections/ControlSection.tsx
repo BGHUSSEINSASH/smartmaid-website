@@ -4,25 +4,25 @@ import { useLocale } from "next-intl";
 const ITEMS_AR = [
   { icon:"🎛️", t:"إخفاء وإظهار الأقسام", d:"أغلق أي قسم من التطبيق لأي دور بمفتاح واحد" },
   { icon:"💰", t:"إدارة العمولات", d:"عمولة مخصصة لكل شركة أو عمولة عالمية موحّدة" },
-  { icon:"👑", t:"منح اشتراكات Pro", d:"منح Gold أو Platinum من يوم حتى سنة كاملة (365 يوم)" },
+  { icon:"👑", t:"منح الاشتراكات", d:"منح Gold أو Platinum لأي مستخدم من يوم حتى سنة" },
   { icon:"🛡️", t:"إدارة الحسابات", d:"تعليق، حذف، تفعيل أي حساب فوراً مع سبب" },
   { icon:"✅", t:"مراجعة KYC", d:"قبول أو رفض توثيق العاملات مع ملاحظات" },
   { icon:"💬", t:"إدارة المحادثات", d:"الرد على العملاء وحل المشاكل مباشرة" },
-  { icon:"🤖", t:"ردود تلقائية", d:"كلمات مفتاحية مع ردود فورية لتوفير وقت الدعم" },
+  { icon:"⚡", t:"ردود تلقائية", d:"كلمات مفتاحية مع ردود فورية لتوفير وقت الدعم" },
   { icon:"🎁", t:"التعويضات", d:"إصدار تعويضات (رصيد، أيام اشتراك، كوبون) موثّقة" },
-  { icon:"📊", t:"تقارير شاملة", d:"إيرادات وعمولات وأداء العاملات في رسوم بيانية" },
+  { icon:"📊", t:"تقارير الأداء", d:"إيرادات وعمولات وأداء العاملات في رسوم بيانية" },
 ];
 
 const ITEMS_EN = [
   { icon:"🎛️", t:"Show/Hide Sections", d:"Toggle any app section for any user role with one switch" },
-  { icon:"💰", t:"Commission Management", d:"Custom commission per company or global unified rate" },
-  { icon:"👑", t:"Grant Pro Access", d:"Give Gold or Platinum from 1 day to a full year (365 days)" },
+  { icon:"💰", t:"Commission Management", d:"Custom commission per company or a global unified rate" },
+  { icon:"👑", t:"Grant Subscriptions", d:"Give Gold or Platinum to any user from 1 day to a year" },
   { icon:"🛡️", t:"Account Management", d:"Suspend, delete, or activate any account instantly with reason" },
   { icon:"✅", t:"KYC Review", d:"Approve or reject maid verification with detailed notes" },
   { icon:"💬", t:"Chat Management", d:"Reply to users and resolve issues directly from admin" },
-  { icon:"🤖", t:"Auto Replies", d:"Keywords with instant replies to save support team time" },
+  { icon:"⚡", t:"Auto Replies", d:"Keywords with instant replies to save support team time" },
   { icon:"🎁", t:"Compensations", d:"Issue credits, subscription days, or coupons with documentation" },
-  { icon:"📊", t:"Full Reports", d:"Revenue, commissions, worker performance in visual charts" },
+  { icon:"📊", t:"Performance Reports", d:"Revenue, commissions, worker performance in visual charts" },
 ];
 
 export default function ControlSection() {
@@ -43,18 +43,18 @@ export default function ControlSection() {
               <span className="pulse" />{ar?"التحكم المركزي":"Central Control"}
             </span>
             <h2 className="t-h1" style={{ color:"var(--text)", marginBottom:".75rem" }}>
-              {ar?"تحكم مركزي لا مثيل له":"Unmatched Central Control"}
+              {ar?"تحكم مركزي بكل شيء":"Full Central Control"}
             </h2>
             <p className="t-lead" style={{ maxWidth:560 }}>
-              {ar?"المدير يتحكم في كل شيء — لحظة بلحظة من لوحة واحدة. أغلق، افتح، عدّل، راقب — كل شيء بمفتاح":"Admin controls everything in real time from one dashboard. Close, open, edit, monitor — everything with a switch"}
+              {ar?"المدير يتحكم في كل شيء من لوحة واحدة — أغلق، افتح، عدّل، راقب":"Admin controls everything from one dashboard — close, open, edit, monitor"}
             </p>
           </div>
           
           {/* Stats row */}
           <div style={{ display:"flex", flexWrap:"wrap", gap:"1.5rem" }}>
             {(ar
-              ? [["24","صلاحية إدارية"],["16","زر تحكم في لوحة الإدارة"],["100%","تغطية كل الأدوار"]]
-              : [["24","Admin Permissions"],["16","Control Buttons in Dashboard"],["100%","Coverage of All Roles"]]
+              ? [["9","أداة تحكم رئيسية"],["4","أدوار مستخدم"],["100%","تغطية كل الأقسام"]]
+              : [["9","Admin Tools"],["4","User Roles"],["100%","Full Section Coverage"]]
             ).map(([v,l]) => (
               <div key={l} style={{ padding:".75rem 1.25rem", borderRadius:14, border:"1.5px solid var(--indigo-m)", background:"var(--indigo-l)" }}>
                 <div style={{ fontSize:"1.6rem", fontWeight:900, color:"var(--indigo)" }}>{v}</div>

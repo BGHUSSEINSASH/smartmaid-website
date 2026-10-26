@@ -1,4 +1,4 @@
-{
+﻿{
   "nav": {
     "home": "Home",
     "features": "Features",
@@ -10,7 +10,7 @@
     "cta": "Get the App"
   },
   "hero": {
-    "badge": "#1 Home Services Platform in the Gulf",
+    "badge": "Book your verified maid today",
     "title": "Your home deserves",
     "titleAccent": "a professional touch",
     "subtitle": "Book verified maids and cleaning companies in under a minute. Secure Escrow payments, live tracking, and real reviews.",
@@ -18,9 +18,9 @@
     "ctaPlay": "Google Play",
     "ctaTry": "Try Online",
     "stat1": "User Rating", "stat1v": "4.9",
-    "stat2": "Happy Clients", "stat2v": "+10K",
-    "stat3": "Verified Maids", "stat3v": "+500",
-    "stat4": "Satisfaction", "stat4v": "99%",
+    "stat2": "Bookings Done", "stat2v": "1,200+",
+    "stat3": "Active Maids", "stat3v": "150+",
+    "stat4": "Satisfaction", "stat4v": "98%",
     "cardConfirmed": "Booking Confirmed",
     "cardWorker": "Maria Santos",
     "cardReview": "Excellent service!"

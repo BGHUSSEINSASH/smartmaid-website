@@ -121,7 +121,7 @@ export default function HeroSection() {
             <div className="anim-up">
               <span className="badge badge-dark">
                 <span className="pulse" />
-                {ar ? "🏆 المنصة الأولى في خدمات المنازل بالخليج" : "🏆 #1 Home Services Platform in the Gulf"}
+                {ar ? "احجز عاملتك الموثّقة الآن" : "Book verified maids today"}
               </span>
             </div>
 
@@ -165,8 +165,8 @@ export default function HeroSection() {
             {/* Stats */}
             <div className="hero-stats anim-up4" style={{ display: "flex", gap: "2.5rem", paddingTop: 8 }}>
               {(ar
-                ? [["4.9 ⭐","تقييم العملاء"],["+10K","عميل سعيد"],["+500","عاملة موثّقة"],["99%","نسبة الرضا"]]
-                : [["4.9 ⭐","User Rating"],["+10K","Happy Clients"],["+500","Verified Maids"],["99%","Satisfaction"]]
+                ? [["4.9 ⭐","تقييم العملاء"],["1,200+","حجز مكتمل"],["150+","عاملة موثّقة"],["98%","نسبة الرضا"]]
+                : [["4.9 ⭐","User Rating"],["1,200+","Completed Bookings"],["150+","Verified Maids"],["98%","Satisfaction"]]
               ).map(([v, l]) => (
                 <div key={l}>
                   <div style={{ fontSize: "1.4rem", fontWeight: 900, color: "#fff" }}>{v}</div>

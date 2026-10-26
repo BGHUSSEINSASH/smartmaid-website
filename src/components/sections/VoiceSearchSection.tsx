@@ -7,34 +7,34 @@ export default function VoiceSearchSection() {
 
   const steps = ar
     ? [
-        { icon: "🎤", title: "اضغط على الميكروفون", desc: "في أي شاشة — الرئيسية، البحث، المساعد الذكي" },
-        { icon: "🗣️", title: "تحدّث بشكل طبيعي", desc: '"أحتاج طباخة تجيد الأكل الخليجي غداً الصباح"' },
-        { icon: "🤖", title: "الذكاء الاصطناعي يفهم", desc: "يحلل طلبك ويبحث في 15+ تصنيف وأكثر من 120 كلمة مفتاحية" },
-        { icon: "✅", title: "نتائج مرتبة بالصلة", desc: "العاملات المناسبة مع نسبة تطابق AI واضحة" },
+        { icon: "🎤", title: "اضغط على الميكروفون", desc: "في أي شاشة — الرئيسية، البحث، أو المساعد" },
+        { icon: "🗣️", title: "تحدّث بشكل طبيعي", desc: '"أحتاج طباخة غداً الصباح لأربعة أشخاص"' },
+        { icon: "🔍", title: "النظام يحلل الطلب", desc: "يبحث في التصنيفات والمهارات المتاحة" },
+        { icon: "✅", title: "نتائج مرتبة بالصلة", desc: "العاملات المناسبة مع التقييم والسعر" },
       ]
     : [
-        { icon: "🎤", title: "Tap the microphone", desc: "On any screen — home, search, or AI assistant" },
-        { icon: "🗣️", title: "Speak naturally", desc: '"I need a maid who can cook Gulf food tomorrow morning"' },
-        { icon: "🤖", title: "AI understands you", desc: "Analyzes your request across 15+ categories and 120+ keywords" },
-        { icon: "✅", title: "Results ranked by relevance", desc: "Matched maids with clear AI match percentage" },
+        { icon: "🎤", title: "Tap the microphone", desc: "On any screen — home, search, or assistant" },
+        { icon: "🗣️", title: "Speak naturally", desc: '"I need a cook tomorrow morning for four people"' },
+        { icon: "🔍", title: "System analyzes your request", desc: "Searches across categories and available skills" },
+        { icon: "✅", title: "Results ranked by relevance", desc: "Matched maids with rating and pricing shown" },
       ];
 
   const features = ar
     ? [
-        "🎙️ تحويل الصوت لنص فوري بدون اتصال إنترنت",
-        "🌍 يدعم اللهجة العربية السعودية والخليجية",
-        "⚡ نتائج خلال أقل من ثانية",
-        "🔄 Fallback ذكي: إن لم يفهم، يقترح تصحيح",
+        "🎙️ تحويل الصوت لنص فوري",
+        "🌍 يدعم اللهجة العربية",
+        "⚡ نتائج سريعة",
+        "🔄 اقتراح بديل عند عدم التطابق",
         "📱 يعمل على iOS وAndroid وWindows",
-        "🤖 Backend AI ثم تحليل محلي ذكي",
+        "🔗 مزامنة مع قاعدة بيانات العاملات",
       ]
     : [
-        "🎙️ Real-time voice-to-text, no internet needed",
-        "🌍 Supports Arabic dialects (Gulf, Saudi)",
-        "⚡ Results in under one second",
-        "🔄 Smart fallback with spelling correction",
+        "🎙️ Real-time voice-to-text",
+        "🌍 Supports Arabic dialects",
+        "⚡ Fast results",
+        "🔄 Fallback suggestions when no match",
         "📱 Works on iOS, Android & Windows",
-        "🤖 Backend AI + local smart analysis",
+        "🔗 Synced with maid database",
       ];
 
   return (
@@ -50,15 +50,15 @@ export default function VoiceSearchSection() {
           <div>
             <span className="badge badge-brand" style={{ marginBottom: "1rem" }}>
               <span className="pulse" />
-              {ar ? "🎤 البحث الصوتي الذكي" : "🎤 Voice Smart Search"}
+              {ar ? "🎤 البحث الصوتي" : "🎤 Voice Search"}
             </span>
             <h2 className="t-h1" style={{ color: "var(--text)", marginBottom: ".75rem" }}>
-              {ar ? <>ابحثي بصوتك<br /><span className="gt-brand">بأي لغة تريد</span></> : <>Search with your voice<br /><span className="gt-brand">in any language</span></>}
+              {ar ? <>ابحثي بصوتك<br /><span className="gt-brand">بكل سهولة</span></> : <>Search with your voice<br /><span className="gt-brand">naturally and fast</span></>}
             </h2>
             <p className="t-lead">
               {ar
-                ? "لا تحتاج كتابة — فقط تحدّث. الذكاء الاصطناعي يفهم طلبك ويجد أفضل العاملات المناسبة لك خلال ثانية واحدة."
-                : "No typing needed — just speak. AI understands your request and finds the best maids for you in one second."}
+                ? "لا تحتاج كتابة — فقط تحدّث. النظام يفهم طلبك ويعرض العاملات المناسبة بسرعة."
+                : "No typing needed — just speak. The system understands your request and shows matching maids quickly."}
             </p>
             <div style={{ display: "flex", flexWrap: "wrap", gap: ".6rem", marginTop: "1.5rem" }}>
               {features.map((f) => (
