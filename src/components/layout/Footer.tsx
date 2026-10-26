@@ -35,7 +35,7 @@ export default function Footer() {
               </span>
             </div>
             <p style={{ fontSize: ".875rem", color: "var(--text-2)", maxWidth: 240, lineHeight: 1.75 }}>
-              {ar ? "خدمات منزلية احترافية بلمسة واحدة في جميع أنحاء الخليج." : "Professional home services in one tap across the Gulf."}
+              {ar ? "خدمات منزلية احترافية بلمسة واحدة." : "Professional home services in one tap."}
             </p>
             {/* Social */}
             <div style={{ display: "flex", gap: 8, marginTop: "1.25rem" }}>

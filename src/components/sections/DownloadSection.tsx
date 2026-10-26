@@ -68,7 +68,7 @@ export default function DownloadSection() {
 
               {/* Stats */}
               <div style={{ display: "flex", gap: "2rem" }}>
-                {(ar ? [["4.9","نجوم"],["+10K","مستخدم"],["+500","عاملة"]] : [["4.9","Stars"],["+10K","Users"],["+500","Maids"]]).map(([v, l]) => (
+                {(ar ? [["4.9","نجوم"],["1,200+","حجز"],["150+","عاملة"]] : [["4.9","Stars"],["1,200+","Bookings"],["150+","Maids"]]).map(([v, l]) => (
                   <div key={l} style={{ textAlign: "center" }}>
                     <div style={{ fontSize: "1.6rem", fontWeight: 900, color: "#fff" }}>{v}</div>
                     <div style={{ fontSize: ".72rem", color: "rgba(255,255,255,.4)", marginTop: 2 }}>{l}</div>

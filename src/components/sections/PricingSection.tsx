@@ -9,8 +9,8 @@ const DATA = {
     tabs:["للأفراد والعملاء","للشركات"],
     personal: [
       { name:"مجاني", price:"0", unit:"", desc:"للأفراد والعملاء", popular:false, pts:["حجز غير محدود","محفظة رقمية","تقييمات وآراء","دعم عبر الدردشة","تحديد موقع GPS"] },
-      { name:"SmartGold ✨", price:"9.99", unit:"/شهر", desc:"للمستخدمين المميّزين", popular:true, pts:["كل مزايا المجاني","خصم 10% على كل حجز","أولوية في نتائج البحث","إلغاء مجاني حتى 24 ساعة","دعم أولوية"] },
-      { name:"SmartPlatinum 💎", price:"19.99", unit:"/شهر", desc:"للمحترفين", popular:false, pts:["كل مزايا Gold","خصم 15% دائم","أولوية قصوى","إلغاء مجاني دائم","عاملة بديلة فوراً","دعم 24/7"] },
+      { name:"SmartGold", price:"9.99", unit:"/شهر", desc:"للمستخدمين المميّزين", popular:true, pts:["كل مزايا المجاني","خصم 10% على كل حجز","أولوية في نتائج البحث","إلغاء مجاني حتى 24 ساعة","دعم أولوية"] },
+      { name:"SmartPlatinum", price:"19.99", unit:"/شهر", desc:"للمحترفين", popular:false, pts:["كل مزايا Gold","خصم 15% دائم","أولوية قصوى","إلغاء مجاني دائم","عاملة بديلة فوراً","دعم 24/7"] },
     ],
     company: [
       { name:"أساسي", price:"49", unit:"/شهر", desc:"حتى 5 عاملات", popular:false, pts:["لوحة تحكم أساسية","KPIs حقيقية","تقارير شهرية","دعم عبر البريد"] },
@@ -25,8 +25,8 @@ const DATA = {
     tabs:["For Individuals","For Companies"],
     personal: [
       { name:"Free", price:"0", unit:"", desc:"For individuals & customers", popular:false, pts:["Unlimited bookings","Digital wallet","Ratings & reviews","Chat support","GPS address detection"] },
-      { name:"SmartGold ✨", price:"9.99", unit:"/mo", desc:"For premium users", popular:true, pts:["Everything in Free","10% discount on all bookings","Priority in search","Free cancellation to 24h","Priority support"] },
-      { name:"SmartPlatinum 💎", price:"19.99", unit:"/mo", desc:"For professionals", popular:false, pts:["Everything in Gold","15% permanent discount","Top priority always","Always free cancellation","Instant replacement maid","24/7 dedicated support"] },
+      { name:"SmartGold", price:"9.99", unit:"/mo", desc:"For premium users", popular:true, pts:["Everything in Free","10% discount on all bookings","Priority in search","Free cancellation to 24h","Priority support"] },
+      { name:"SmartPlatinum", price:"19.99", unit:"/mo", desc:"For professionals", popular:false, pts:["Everything in Gold","15% permanent discount","Top priority always","Always free cancellation","Instant replacement maid","24/7 dedicated support"] },
     ],
     company: [
       { name:"Basic", price:"49", unit:"/mo", desc:"Up to 5 maids", popular:false, pts:["Basic dashboard","Real KPIs","Monthly reports","Email support"] },
